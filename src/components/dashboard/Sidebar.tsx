@@ -79,20 +79,19 @@ export default function Sidebar() {
 
     return (
         <aside className="w-64 min-h-screen bg-primary flex flex-col shadow-xl">
-            {/* Logo Section */}
             <div className="px-6 py-6 border-b border-white/10">
                 <div className="flex items-center gap-3">
                     <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-md">
                         <LifeBuoy size={24} color="#14497F" />
                     </div>
                     <div>
-                        <h1 className="text-lg font-bold text-white">Helpdesk</h1>
-                        <p className="text-xs text-white/60">Admin Panel</p>
+                        <img src="" alt="" />
+                        {/* <h1 className="text-lg font-bold text-white">Helpdesk</h1>
+                        <p className="text-xs text-white/60">Admin Panel</p> */}
                     </div>
                 </div>
             </div>
 
-            {/* Navigation */}
             <nav className="flex-1 px-4 py-4">
                 <p className="px-3 mb-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Menu</p>
                 <ul className="space-y-1">
@@ -103,13 +102,12 @@ export default function Sidebar() {
 
                         return (
                             <li key={item.name}>
-                                {/* Main Menu Item */}
                                 {hasSubItems ? (
                                     <button
                                         onClick={() => toggleExpand(item.name)}
                                         className={`w-full group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${isActive
-                                                ? 'bg-white/20 text-white'
-                                                : 'text-white/80 hover:bg-white/10 hover:text-white'
+                                            ? 'bg-white/20 text-white'
+                                            : 'text-white/80 hover:bg-white/10 hover:text-white'
                                             }`}
                                     >
                                         <span className={isActive ? 'text-white' : 'text-white/60 group-hover:text-white'}>
@@ -125,8 +123,8 @@ export default function Sidebar() {
                                     <Link
                                         href={item.href || '#'}
                                         className={`group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${isActive
-                                                ? 'bg-white text-[#14497F] shadow-md'
-                                                : 'text-white/80 hover:bg-white/10 hover:text-white'
+                                            ? 'bg-white text-[#14497F] shadow-md'
+                                            : 'text-white/80 hover:bg-white/10 hover:text-white'
                                             }`}
                                     >
                                         <span className={isActive ? 'text-[#14497F]' : 'text-white/60 group-hover:text-white'}>
@@ -139,7 +137,6 @@ export default function Sidebar() {
                                     </Link>
                                 )}
 
-                                {/* Sub Items (Accordion) */}
                                 {hasSubItems && (
                                     <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                                         }`}>
@@ -151,8 +148,8 @@ export default function Sidebar() {
                                                         <Link
                                                             href={subItem.href}
                                                             className={`block px-3 py-2 rounded-lg text-sm transition-all duration-200 ${isSubActive
-                                                                    ? 'bg-white text-[#14497F] font-medium shadow-sm'
-                                                                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                                                                ? 'bg-white text-[#14497F] font-medium shadow-sm'
+                                                                : 'text-white/70 hover:text-white hover:bg-white/10'
                                                                 }`}
                                                         >
                                                             {subItem.name}
@@ -168,8 +165,6 @@ export default function Sidebar() {
                     })}
                 </ul>
             </nav>
-
-            {/* Bottom Section */}
             <div className="p-4 mx-4 mb-4 rounded-xl bg-white/10 border border-white/10">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#FFCB05] flex items-center justify-center shadow-md">

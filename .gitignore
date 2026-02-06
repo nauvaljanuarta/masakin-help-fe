@@ -44,4 +44,4 @@ next-env.d.ts
 .mcp.json
 
 # settings
-.gemini/settings.json
+settings.json

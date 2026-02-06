@@ -21,7 +21,6 @@ export default function Header({ title, subtitle, user, onLogout }: HeaderProps)
                     <p className="text-sm text-gray-500">{subtitle}</p>
                 </div>
                 <div className="flex items-center gap-4">
-                    {/* Search */}
                     <div className="relative">
                         <input
                             type="text"
@@ -33,13 +32,11 @@ export default function Header({ title, subtitle, user, onLogout }: HeaderProps)
                         </div>
                     </div>
 
-                    {/* Notifications */}
                     <button className="relative p-2.5 text-gray-600 hover:text-[#14497F] hover:bg-[#14497F]/5 rounded-xl transition">
                         <Bell size={20} />
                         <span className="absolute top-2 right-2 w-2 h-2 bg-[#E62B2B] rounded-full"></span>
                     </button>
 
-                    {/* Profile */}
                     <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
                         <div className="w-10 h-10 rounded-xl bg-[#14497F] flex items-center justify-center text-white font-bold shadow-md">
                             {user.name.charAt(0).toUpperCase()}
