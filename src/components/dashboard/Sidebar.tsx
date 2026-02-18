@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { House, Package, Users, BarChart, Settings, LifeBuoy, ChevronDown } from '@deemlol/next-icons';
+import Image from 'next/image';
 
 interface SubNavItem {
     name: string;
@@ -80,18 +81,8 @@ export default function Sidebar() {
     return (
         <aside className="w-64 min-h-screen bg-primary flex flex-col shadow-xl">
             <div className="px-6 py-6 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-md">
-                        <LifeBuoy size={24} color="#14497F" />
-                    </div>
-                    <div>
-                        <img src="" alt="" />
-                        {/* <h1 className="text-lg font-bold text-white">Helpdesk</h1>
-                        <p className="text-xs text-white/60">Admin Panel</p> */}
-                    </div>
-                </div>
+                <Image src="/uniairbrandlogo1.png" alt="unairlogo" width={200} height={20} />
             </div>
-
             <nav className="flex-1 px-4 py-4">
                 <p className="px-3 mb-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Menu</p>
                 <ul className="space-y-1">
@@ -99,7 +90,6 @@ export default function Sidebar() {
                         const isActive = isItemActive(item);
                         const isExpanded = expandedItems.includes(item.name);
                         const hasSubItems = item.subItems && item.subItems.length > 0;
-
                         return (
                             <li key={item.name}>
                                 {hasSubItems ? (

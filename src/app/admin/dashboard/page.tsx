@@ -110,9 +110,7 @@ export default function Dashboard() {
                             />
                         </div>
 
-                        {/* Recent Activity Section */}
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            {/* Recent Tickets */}
                             <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
                                 <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
                                     <h3 className="font-bold text-gray-900">Recent Tickets</h3>
@@ -132,7 +130,6 @@ export default function Dashboard() {
                                 </div>
                             </div>
 
-                            {/* Quick Stats */}
                             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                                 <h3 className="font-bold text-gray-900 mb-6">Quick Stats</h3>
                                 <div className="space-y-6">

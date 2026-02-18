@@ -1,87 +1,35 @@
 'use client';
 
-import { useState, FormEvent, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { login, generateMathCaptcha, CaptchaResponse } from "@/lib/api/auth";
+import { useLogin } from '@/hooks/useLogin';
+import Image from 'next/image';
 
 export default function Login() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [captcha, setCaptcha] = useState<CaptchaResponse | null>(null);
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const router = useRouter();
-
-  useEffect(() => {
-    fetchCaptcha();
-  }, []);
-
-  const fetchCaptcha = async () => {
-    const captchaData = await generateMathCaptcha();
-    if (captchaData) {
-      setCaptcha(captchaData);
-      setCaptchaAnswer("");
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
-
-    if (!captcha) {
-      setError("CAPTCHA not loaded. Please refresh.");
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const result = await login({
-        name,
-        password,
-        captcha_id: captcha.captcha_id,
-        captcha_answer: parseInt(captchaAnswer, 10)
-      });
-
-      if (result.success && result.token) {
-        localStorage.setItem('token', result.token);
-        localStorage.setItem('user', JSON.stringify(result.user));
-        router.push("/dashboard");
-      } else {
-        setError("Login failed");
-        fetchCaptcha();
-        setIsLoading(false);
-      }
-    } catch (err) {
-      setError("An unexpected error occurred");
-      fetchCaptcha();
-      setIsLoading(false);
-    }
-  };
+  const {
+    name, setName,
+    password, setPassword,
+    captcha,
+    captchaAnswer, setCaptchaAnswer,
+    isLoading,
+    error,
+    fetchCaptcha,
+    handleSubmit,
+  } = useLogin();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#14497F]">
       <div className="w-full max-w-md px-6">
         <div className="bg-white rounded-2xl shadow-xl p-8">
-          {/* Logo */}
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-[#14497F] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <span className="text-white text-3xl font-bold">H</span>
+            <div className="w-auto h-20 bg-[#14497F] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <Image src="/uniairbrandlogo1.png" alt="Logo" width={200} height={100} />
             </div>
-            <h1 className="text-2xl font-bold text-[#14497F] mb-2">
-              Welcome Back
-            </h1>
-            <p className="text-gray-600">
-              Sign in to your helpdesk account
-            </p>
+            <h1 className="text-2xl font-bold text-[#14497F] mb-2">Welcome Back</h1>
+            <p className="text-gray-600">Sign in to your helpdesk account</p>
           </div>
 
           {error && (
             <div className="mb-6 p-4 rounded-xl bg-[#E62B2B]/10 border border-[#E62B2B]/20">
-              <p className="text-sm text-[#E62B2B] text-center font-medium">
-                {error}
-              </p>
+              <p className="text-sm text-[#E62B2B] text-center font-medium">{error}</p>
             </div>
           )}
 
@@ -116,7 +64,6 @@ export default function Login() {
               />
             </div>
 
-            {/* CAPTCHA Field */}
             <div>
               <label htmlFor="captcha" className="block text-sm font-semibold text-[#14497F] mb-2">
                 Security Question
@@ -157,20 +104,18 @@ export default function Login() {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading}
               className="w-full bg-[#14497F] text-white py-3.5 rounded-xl font-semibold text-lg hover:bg-[#103B66] transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
         </div>
 
-        {/* Bottom Text */}
         <p className="text-center text-white/80 mt-6">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{' '}
           <a href="#" className="text-[#FFCB05] font-semibold hover:underline">
             Sign up
           </a>
